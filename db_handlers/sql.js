@@ -23,7 +23,7 @@ const insert = (table, fields) =>{
     queryString = `INSERT INTO ${table}(`;
     for(const field of fields){
         if(fields[0] !== field){queryString += ' '}
-        queryString += `${field.name}`;
+        queryString += `${field}`;
         if(fields[fields.length - 1] !== field){ queryString += ',' }
     }
     queryString += `) VALUES(`;

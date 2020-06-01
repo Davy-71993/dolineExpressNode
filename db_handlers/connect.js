@@ -62,8 +62,9 @@ const migrate = () => {
 
     for (const name of names){
         const model = models[name];
-        if(model.fields)
+        if(model.fields){
             createModelSchema(sql.createTable(name.toLowerCase() + 's', model.fields));
+        }
     }
 }
 
