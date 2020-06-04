@@ -1,4 +1,5 @@
-
+const { pool, createModelSchema, deleteModelSchema, allModelSchemas, all } = require('../db_handlers/connect');
+const sql = require('./sql');
 class Model {
     data = () => {
         const values = [];
@@ -18,7 +19,21 @@ class Model {
         }
     }
 
-    tableName = () => this.toString();
+    save = async(table) => {
+        const model = this;
+        const modelName = model.str || 'Model';
+        try {
+            const newuser = await pool('asubo').query(sql.insert(table, model.data().keys), model.data().values);
+            const rows = newuser.rows;
+            console.log(`${modelName} ${model.username} has ben created successifully`);
+            
+            return rows
+        } catch (error) {
+            console.log(error.message);
+        }
+
+        console.log(model.data());
+    }
 }
  
 module.exports = Model;

@@ -6,29 +6,25 @@ class User extends Model{
             name: 'username',
             type: 'VARCHAR',
             max: 27,
-            blank: false
         },
         {
             name: 'email',
             type: 'VARCHAR',
             max: 27,
-            blank: false
         },
         {
             name: 'password',
             type: 'VARCHAR',
             max: 27,
-            blank: false
         }
     ]
+    static str = User.name;
     constructor(username, email, password){
         super();
         this.username = username;
         this.email = email;
         this.password = password; 
     }
-
-    text = () => {}
 
 }
 
@@ -43,5 +39,6 @@ module.exports.User = User;
 
 // const sql = require('./db_handlers/sql')
 // user = new User('davy', 'davy@gmail.com', 'pasword')
-// console.log(user.data().keys)
+
+// console.log(user['str']);
 // console.log(sql.insert('users', user.data().keys))
